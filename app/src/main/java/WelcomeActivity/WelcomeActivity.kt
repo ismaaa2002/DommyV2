@@ -38,11 +38,27 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_welcome)
 
+        applySavedLanguage()
+
+
+        // Configura el padding para evitar solapar los elementos con la barra de estado
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        // Carga animaciones desde /res/anim/
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         val slideIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom)
         val scaleIn = AnimationUtils.loadAnimation(this, R.anim.scale_in)
+        val fadeSlideDown = AnimationUtils.loadAnimation(this, R.anim.fade_slide_down)
 
+        // Asigna vistas
         val logo = findViewById<ImageView>(R.id.logoImageView)
         val slogan = findViewById<TextView>(R.id.sloganText)
         val date = findViewById<TextView>(R.id.dateTimeText)
@@ -52,8 +68,8 @@ class WelcomeActivity : AppCompatActivity() {
         val helpBtn = findViewById<FloatingActionButton>(R.id.helpButton)
         val tipBtn = findViewById<FloatingActionButton>(R.id.tipButton)
 
-        logo.startAnimation(fadeIn)
-
+        // Aplica animaciones secuenciales
+        logo?.startAnimation(fadeSlideDown)
         slogan.postDelayed({ slogan.startAnimation(fadeIn) }, 200)
         date.postDelayed({ date.startAnimation(fadeIn) }, 300)
         weather.postDelayed({ weather.startAnimation(fadeIn) }, 400)
@@ -62,25 +78,13 @@ class WelcomeActivity : AppCompatActivity() {
         helpBtn.postDelayed({ helpBtn.startAnimation(scaleIn) }, 700)
         tipBtn.postDelayed({ tipBtn.startAnimation(scaleIn) }, 700)
 
-
-
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_welcome)
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        // Fecha y hora actual
+        // Muestra la fecha y hora actual
         val dateTimeText: TextView = findViewById(R.id.dateTimeText)
         val formatter = SimpleDateFormat("dd MMM yyyy • HH:mm", Locale.getDefault())
         val now = Date()
         dateTimeText.text = formatter.format(now)
 
-        // Clima
+        // Inicializa el servicio de ubicación
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
@@ -89,20 +93,41 @@ class WelcomeActivity : AppCompatActivity() {
             getUserLocation()
         }
 
-        // Selector de idioma
+        // Configura el selector de idioma
         val languageSelector: MaterialAutoCompleteTextView = findViewById(R.id.languageSelector)
         val languages = listOf("Español", "English", "Deutsch", "Français")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, languages)
         languageSelector.setAdapter(adapter)
 
-        // Botón continuar
         val continueButton: Button = findViewById(R.id.continueButton)
         continueButton.setOnClickListener {
-            val selectedLanguage = languageSelector.text.toString()
-            Toast.makeText(this, "Idioma seleccionado: $selectedLanguage", Toast.LENGTH_SHORT).show()
+            continueButton.setOnClickListener {
+                val selectedLanguage = languageSelector.text.toString()
+
+                if (selectedLanguage.isBlank()) {
+                    Toast.makeText(this, "Por favor selecciona un idioma", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                val languageCode = when (selectedLanguage.lowercase()) {
+                    "español" -> "es"
+                    "english" -> "en"
+                    "deutsch" -> "de"
+                    "français" -> "fr"
+                    else -> "en"
+                }
+
+                saveLanguageToPreferences(languageCode)
+                setAppLocale(languageCode)
+
+                // Recargar la actividad actual
+                recreate()
+            }
+
+
         }
 
-        // Botón ayuda
+        // Botón de ayuda: muestra diálogo personalizado con fondo oscuro
         val helpButton: FloatingActionButton = findViewById(R.id.helpButton)
         helpButton.setOnClickListener {
             val dialogView = layoutInflater.inflate(R.layout.custom_help_dialog, null)
@@ -110,14 +135,12 @@ class WelcomeActivity : AppCompatActivity() {
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
             val okButton = dialogView.findViewById<Button>(R.id.help_ok_button)
-            okButton.setOnClickListener {
-                dialog.dismiss()
-            }
+            okButton.setOnClickListener { dialog.dismiss() }
 
             dialog.show()
         }
 
-        // Botón tip
+        // Botón de tip del día: muestra consejo diario en diálogo estilizado
         val tipButton: FloatingActionButton = findViewById(R.id.tipButton)
         tipButton.setOnClickListener {
             val tipText = getTipOfDay()
@@ -129,17 +152,15 @@ class WelcomeActivity : AppCompatActivity() {
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
             dialogView.findViewById<TextView>(R.id.tip_message).text = tipText
-
             dialogView.findViewById<Button>(R.id.tip_ok_button).setOnClickListener {
                 dialog.dismiss()
             }
 
             dialog.show()
         }
-
-
     }
 
+    /** Obtiene la ubicación actual del usuario o usa Madrid por defecto si falla. */
     private fun getUserLocation() {
         val locationRequest = LocationRequest.create().apply {
             priority = Priority.PRIORITY_HIGH_ACCURACY
@@ -176,6 +197,7 @@ class WelcomeActivity : AppCompatActivity() {
         }, Looper.getMainLooper())
     }
 
+    /** Llama a la API de clima y muestra la temperatura, descripción y un emoji correspondiente. */
     private fun getWeatherFromAPI(lat: Double, lon: Double, isDefaultLocation: Boolean) {
         val apiKey = "877bc5be5d214009503712f69d1e1510"
         val url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&units=metric&lang=es&appid=$apiKey"
@@ -220,6 +242,7 @@ class WelcomeActivity : AppCompatActivity() {
         })
     }
 
+    // Lista de consejos diarios que rotan automáticamente
     private val dailyTips = listOf(
         "Recuerda cerrar bien la puerta al salir.",
         "Explora los restaurantes cercanos recomendados en recepción.",
@@ -249,11 +272,13 @@ class WelcomeActivity : AppCompatActivity() {
         "Sácale provecho a tu estancia: descubre qué hacer hoy en la app."
     )
 
-
+    /** Devuelve el tip del día según el día del año */
     private fun getTipOfDay(): String {
         val dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
         return dailyTips[dayOfYear % dailyTips.size]
     }
+
+    /** Devuelve un emoji según la descripción del clima */
     private fun getWeatherEmoji(description: String): String {
         return when {
             "lluvia" in description -> "🌧️"
@@ -265,6 +290,39 @@ class WelcomeActivity : AppCompatActivity() {
             else -> "🌤️"
         }
     }
+
+    private fun saveLanguageToPreferences(languageCode: String) {
+        val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        prefs.edit().putString("selected_language", languageCode).apply()
+    }
+
+
+    private fun getSavedLanguage(): String? {
+        val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        return prefs.getString("selected_language", null)
+    }
+
+    private fun applySavedLanguage() {
+        val langCode = getSavedLanguage() ?: return
+        val locale = Locale(langCode)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        createConfigurationContext(config)
+    }
+    private fun setAppLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        config.setLayoutDirection(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
+
+
+
+
 
 
 }

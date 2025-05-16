@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">MyCityHome.es</string>
+    <string name="welcome_slogan">Welcome to MyCityHome.es Your stay starts here.</string>
+    <string name="date_loading">Loading time…</string>
+    <string name="weather_loading">Loading weather…</string>
+    <string name="select_language">Select language</string>
+    <string name="button_continue">CONTINUE</string>
+    <string name="help_title">Help</string>
+    <string name="tip_title">💡 Tip of the Day</string>
+    <string name="please_select_language">Please select a language</string>
+</resources>

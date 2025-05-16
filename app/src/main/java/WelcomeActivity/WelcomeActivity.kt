@@ -1,7 +1,10 @@
 package WelcomeActivity
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
@@ -38,11 +41,14 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_welcome)
-
+    super.onCreate(savedInstanceState)
         applySavedLanguage()
+        Log.d("IDIOMA", "applySavedLanguage ejecutado")
+
+        enableEdgeToEdge()
+    setContentView(R.layout.activity_welcome)
+
+
 
 
         // Configura el padding para evitar solapar los elementos con la barra de estado
@@ -62,6 +68,7 @@ class WelcomeActivity : AppCompatActivity() {
         val logo = findViewById<ImageView>(R.id.logoImageView)
         val slogan = findViewById<TextView>(R.id.sloganText)
         val date = findViewById<TextView>(R.id.dateTimeText)
+        val continueButton: Button = findViewById(R.id.continueButton)
         val weather = findViewById<TextView>(R.id.weatherText)
         val languageInput = findViewById<TextInputLayout>(R.id.languageInputLayout)
         val continueBtn = findViewById<Button>(R.id.continueButton)
@@ -95,37 +102,39 @@ class WelcomeActivity : AppCompatActivity() {
 
         // Configura el selector de idioma
         val languageSelector: MaterialAutoCompleteTextView = findViewById(R.id.languageSelector)
-        val languages = listOf("Español", "English", "Deutsch", "Français")
+        val languages = listOf("Español", "English", "Français", "Русский", "中文", "العربية")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, languages)
         languageSelector.setAdapter(adapter)
 
-        val continueButton: Button = findViewById(R.id.continueButton)
-        continueButton.setOnClickListener {
-            continueButton.setOnClickListener {
-                val selectedLanguage = languageSelector.text.toString()
+    // Acción al pulsar CONTINUAR
+    continueButton.setOnClickListener {
+        val selectedLanguage = languageSelector.text.toString()
 
-                if (selectedLanguage.isBlank()) {
-                    Toast.makeText(this, "Por favor selecciona un idioma", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                val languageCode = when (selectedLanguage.lowercase()) {
-                    "español" -> "es"
-                    "english" -> "en"
-                    "deutsch" -> "de"
-                    "français" -> "fr"
-                    else -> "en"
-                }
-
-                saveLanguageToPreferences(languageCode)
-                setAppLocale(languageCode)
-
-                // Recargar la actividad actual
-                recreate()
-            }
-
-
+        if (selectedLanguage.isBlank()) {
+            Toast.makeText(this, getString(R.string.please_select_language), Toast.LENGTH_SHORT).show()
+            return@setOnClickListener
         }
+
+        val languageCode = when (selectedLanguage.lowercase()) {
+            "español" -> "es"
+            "english" -> "en"
+            "français" -> "fr"
+            "русский" -> "ru"
+            "中文" -> "zh"
+            "العربية" -> "ar"
+            else -> "en"
+        }
+
+
+        saveLanguageToPreferences(languageCode)
+        val intent = Intent(this, WelcomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
+        // reinicia la actividad
+
+    }
+
 
         // Botón de ayuda: muestra diálogo personalizado con fondo oscuro
         val helpButton: FloatingActionButton = findViewById(R.id.helpButton)
@@ -158,6 +167,9 @@ class WelcomeActivity : AppCompatActivity() {
 
             dialog.show()
         }
+
+
+
     }
 
     /** Obtiene la ubicación actual del usuario o usa Madrid por defecto si falla. */
@@ -291,10 +303,38 @@ class WelcomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveLanguageToPreferences(languageCode: String) {
+
+    private fun setAppLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        config.setLayoutDirection(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+    override fun attachBaseContext(newBase: Context) {
+        val prefs = newBase.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val lang = prefs.getString("selected_language", "es") ?: "es"
+
+        Log.d("IDIOMA", "attachBaseContext → idioma guardado: $lang")
+
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+
+        val config = Configuration(newBase.resources.configuration)
+        config.setLocale(locale)
+
+        val context = newBase.createConfigurationContext(config)
+        super.attachBaseContext(context)
+    }
+
+
+    fun saveLanguageToPreferences(languageCode: String) {
+        Log.d("IDIOMA", "Guardando idioma: $languageCode")
         val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
         prefs.edit().putString("selected_language", languageCode).apply()
     }
+
 
 
     private fun getSavedLanguage(): String? {
@@ -306,18 +346,16 @@ class WelcomeActivity : AppCompatActivity() {
         val langCode = getSavedLanguage() ?: return
         val locale = Locale(langCode)
         Locale.setDefault(locale)
-        val config = resources.configuration
-        config.setLocale(locale)
-        createConfigurationContext(config)
-    }
-    private fun setAppLocale(languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-        val config = resources.configuration
+
+        val config = Configuration(resources.configuration)
         config.setLocale(locale)
         config.setLayoutDirection(locale)
+
         resources.updateConfiguration(config, resources.displayMetrics)
     }
+
+
+
 
 
 

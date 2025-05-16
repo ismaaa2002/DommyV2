@@ -1,11 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <string name="app_name">DommyV2</string>
-    <string-array name="languages_array">
-        <item>Elegir idioma</item>
-        <item>Español</item>
-        <item>English</item>
-        <item>Deutsch</item>
-        <item>Français</item>
-    </string-array>
+    <string name="app_name">MyCityHome.es</string>
+    <string name="welcome_slogan">Bienvenido a MyCityHome.es&#10;Tu estancia comienza aquí.</string>
+    <string name="date_loading">Cargando hora…</string>
+    <string name="weather_loading">Cargando clima…</string>
+    <string name="select_language">Elegir idioma</string>
+    <string name="button_continue">CONTINUAR</string>
+    <string name="help_title">Ayuda</string>
+    <string name="tip_title">💡 Tip del día</string>
+    <string name="please_select_language">Por favor, selecciona un idioma</string>
 
 </resources>

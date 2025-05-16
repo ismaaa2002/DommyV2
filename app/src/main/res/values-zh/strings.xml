@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCityHome.es</string>
+    <string name="welcome_slogan">欢迎来到 MyCityHome.es 您的旅程从这里开始。</string>
+    <string name="date_loading">加载时间…</string>
+    <string name="weather_loading">加载天气…</string>
+    <string name="select_language">选择语言</string>
+    <string name="button_continue">继续</string>
+    <string name="help_title">帮助</string>
+    <string name="tip_title">💡 每日提示</string>
+    <string name="please_select_language">请选择一种语言</string>
+</resources>

@@ -29,7 +29,7 @@
         android:id="@+id/sloganText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenido a MyCityHome.es\nTu estancia comienza aquí."
+        android:text="@string/welcome_slogan"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textAlignment="center"
@@ -45,7 +45,7 @@
         android:id="@+id/dateTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cargando hora..."
+        android:text="@string/date_loading"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:fontFamily="@font/poppins_regular"
@@ -55,12 +55,11 @@
         app:layout_constraintEnd_toStartOf="@id/weatherText"
         app:layout_constraintHorizontal_chainStyle="packed" />
 
-    <!-- CLIMA -->
     <TextView
         android:id="@+id/weatherText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cargando clima..."
+        android:text="@string/weather_loading"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:fontFamily="@font/poppins_regular"
@@ -78,7 +77,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="Elegir idioma"
+        android:hint="@string/select_language"
         style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         app:boxBackgroundColor="#212122"
         app:boxStrokeColor="@android:color/transparent"
@@ -107,7 +106,7 @@
         android:id="@+id/continueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CONTINUAR"
+        android:text="@string/button_continue"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/poppins_regular"
         android:backgroundTint="#212122"
@@ -121,31 +120,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- BOTÓN AYUDA (FAB) -->
+    <!-- BOTÓN AYUDA -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/helpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="Ayuda"
+        android:contentDescription="@string/help_title"
         android:src="@drawable/ic_help"
         app:tint="@android:color/white"
         app:backgroundTint="#212122"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- BOTÓN TIP (FAB) -->
+    <!-- BOTÓN TIP -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/tipButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="Tip del día"
+        android:contentDescription="@string/tip_title"
         android:src="@drawable/ic_tip"
         app:tint="@android:color/white"
         app:backgroundTint="#212122"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

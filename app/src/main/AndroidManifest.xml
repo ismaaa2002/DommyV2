@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +18,30 @@
         android:theme="@style/Theme.DommyV2"
         tools:targetApi="31">
         <activity
+            android:name="Features.TvActivity"
+            android:exported="false" />
+        <activity
+            android:name="Features.MapActivity"
+            android:exported="false" />
+        <activity
+            android:name="Features.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name="Features.InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name="Features.ACActivity"
+            android:exported="false" />
+        <activity
+            android:name="Features.WifiActivity"
+            android:exported="false" />
+        <activity
+            android:name="Features.LightsActivity"
+            android:exported="false" />
+        <activity
+            android:name="Features.DoorsActivity"
+            android:exported="false" />
+        <activity
             android:name="WelcomeActivity.WelcomeActivity"
             android:exported="true">
             <intent-filter>
@@ -26,19 +51,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.tuapp.dommy.MainActivity"
             android:exported="true">
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
-
-
-
 
 </manifest>

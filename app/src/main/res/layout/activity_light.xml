@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Fondo desenfocado -->
+    <ImageView
+        android:id="@+id/lightsBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_backgroud_desenfocado"
+        android:contentDescription="@string/app_name" />
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:alpha="0.7"
+        android:src="@drawable/logo_minimalista"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Grid de botones de luces -->
+    <GridLayout
+        android:id="@+id/lightsGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Ejemplo de botón: Entrada -->
+        <LinearLayout
+            android:id="@+id/itemEntrada"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_margin="12dp"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_dark_background"
+            android:gravity="center">
+
+            <Switch
+                android:id="@+id/switchEntrada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entrada"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
+
+        <!-- Salón -->
+        <LinearLayout
+            android:id="@+id/itemSalon"
+            style="@style/CustomLightItem"
+            android:layout_columnWeight="1">
+            <Switch
+                android:id="@+id/switchSalon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salón"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
+
+        <!-- Cocina -->
+        <LinearLayout
+            android:id="@+id/itemCocina"
+            style="@style/CustomLightItem"
+            android:layout_columnWeight="1">
+            <Switch
+                android:id="@+id/switchCocina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cocina"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
+
+        <!-- Baño -->
+        <LinearLayout
+            android:id="@+id/itemBano"
+            style="@style/CustomLightItem"
+            android:layout_columnWeight="1">
+            <Switch
+                android:id="@+id/switchBano"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Baño"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
+
+        <!-- Dormitorio 1 -->
+        <LinearLayout
+            android:id="@+id/itemDorm1"
+            style="@style/CustomLightItem"
+            android:layout_columnWeight="1">
+            <Switch
+                android:id="@+id/switchDorm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dormitorio 1"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
+
+        <!-- Dormitorio 2 -->
+        <LinearLayout
+            android:id="@+id/itemDorm2"
+            style="@style/CustomLightItem"
+            android:layout_columnWeight="1">
+            <Switch
+                android:id="@+id/switchDorm2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dormitorio 2"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

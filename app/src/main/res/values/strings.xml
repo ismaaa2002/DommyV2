@@ -10,5 +10,10 @@
     <string name="help_title">Ayuda</string>
     <string name="tip_title">💡 Tip del día</string>
     <string name="please_select_language">Por favor, selecciona un idioma</string>
+    <string name="confirm_language_title">¿Confirmar idioma?</string>
+    <string name="confirm_language_message">¿Seguro que quieres continuar con este idioma?</string>
+    <string name="confirm_yes">Sí</string>
+    <string name="confirm_no">No</string>
+
 
 </resources>

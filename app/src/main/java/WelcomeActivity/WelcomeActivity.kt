@@ -34,6 +34,8 @@ import android.view.animation.AnimationUtils
 import android.view.animation.Animation
 import android.widget.ImageView
 import com.google.android.material.textfield.TextInputLayout
+import com.tuapp.dommy.MainActivity
+import kotlin.jvm.java
 
 
 class WelcomeActivity : AppCompatActivity() {
@@ -41,136 +43,168 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
+
+        val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        val selectedLang = prefs.getString("selected_language", null)
+        val confirmed = prefs.getBoolean("language_confirmed", false)
+
+// Solo ir a MainActivity si el idioma ya fue confirmado explícitamente
+        if (selectedLang != null && confirmed) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
+
         applySavedLanguage()
         Log.d("IDIOMA", "applySavedLanguage ejecutado")
 
         enableEdgeToEdge()
-    setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.activity_welcome)
 
-
-
-
-        // Configura el padding para evitar solapar los elementos con la barra de estado
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Carga animaciones desde /res/anim/
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         val slideIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom)
         val scaleIn = AnimationUtils.loadAnimation(this, R.anim.scale_in)
         val fadeSlideDown = AnimationUtils.loadAnimation(this, R.anim.fade_slide_down)
 
-        // Asigna vistas
         val logo = findViewById<ImageView>(R.id.logoImageView)
         val slogan = findViewById<TextView>(R.id.sloganText)
         val date = findViewById<TextView>(R.id.dateTimeText)
-        val continueButton: Button = findViewById(R.id.continueButton)
         val weather = findViewById<TextView>(R.id.weatherText)
         val languageInput = findViewById<TextInputLayout>(R.id.languageInputLayout)
-        val continueBtn = findViewById<Button>(R.id.continueButton)
-        val helpBtn = findViewById<FloatingActionButton>(R.id.helpButton)
-        val tipBtn = findViewById<FloatingActionButton>(R.id.tipButton)
+        val continueButton = findViewById<Button>(R.id.continueButton)
+        val helpButton = findViewById<FloatingActionButton>(R.id.helpButton)
+        val tipButton = findViewById<FloatingActionButton>(R.id.tipButton)
+        val languageSelector = findViewById<MaterialAutoCompleteTextView>(R.id.languageSelector)
 
-        // Aplica animaciones secuenciales
         logo?.startAnimation(fadeSlideDown)
         slogan.postDelayed({ slogan.startAnimation(fadeIn) }, 200)
         date.postDelayed({ date.startAnimation(fadeIn) }, 300)
         weather.postDelayed({ weather.startAnimation(fadeIn) }, 400)
         languageInput.postDelayed({ languageInput.startAnimation(slideIn) }, 500)
-        continueBtn.postDelayed({ continueBtn.startAnimation(slideIn) }, 600)
-        helpBtn.postDelayed({ helpBtn.startAnimation(scaleIn) }, 700)
-        tipBtn.postDelayed({ tipBtn.startAnimation(scaleIn) }, 700)
+        continueButton.postDelayed({ continueButton.startAnimation(slideIn) }, 600)
+        helpButton.postDelayed({ helpButton.startAnimation(scaleIn) }, 700)
+        tipButton.postDelayed({ tipButton.startAnimation(scaleIn) }, 700)
 
-        // Muestra la fecha y hora actual
-        val dateTimeText: TextView = findViewById(R.id.dateTimeText)
         val formatter = SimpleDateFormat("dd MMM yyyy • HH:mm", Locale.getDefault())
         val now = Date()
-        dateTimeText.text = formatter.format(now)
+        date.text = formatter.format(now)
 
-        // Inicializa el servicio de ubicación
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100)
         } else {
             getUserLocation()
         }
 
-        // Configura el selector de idioma
-        val languageSelector: MaterialAutoCompleteTextView = findViewById(R.id.languageSelector)
+        // Idiomas
         val languages = listOf("Español", "English", "Français", "Русский", "中文", "العربية")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, languages)
         languageSelector.setAdapter(adapter)
 
-    // Acción al pulsar CONTINUAR
-    continueButton.setOnClickListener {
-        val selectedLanguage = languageSelector.text.toString()
-
-        if (selectedLanguage.isBlank()) {
-            Toast.makeText(this, getString(R.string.please_select_language), Toast.LENGTH_SHORT).show()
-            return@setOnClickListener
+        // Recuperar el idioma guardado y asignarlo al Spinner
+        val savedLangCode = getSavedLanguage()
+        val savedLangName = when (savedLangCode) {
+            "es" -> "Español"
+            "en" -> "English"
+            "fr" -> "Français"
+            "ru" -> "Русский"
+            "zh" -> "中文"
+            "ar" -> "العربية"
+            else -> ""
         }
 
-        val languageCode = when (selectedLanguage.lowercase()) {
-            "español" -> "es"
-            "english" -> "en"
-            "français" -> "fr"
-            "русский" -> "ru"
-            "中文" -> "zh"
-            "العربية" -> "ar"
-            else -> "en"
+        if (savedLangName.isNotEmpty()) {
+            languageSelector.setText(savedLangName, false)
         }
 
 
-        saveLanguageToPreferences(languageCode)
-        val intent = Intent(this, WelcomeActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-        finish()
-        // reinicia la actividad
+        // 🔁 Al seleccionar idioma desde el Spinner
+        languageSelector.setOnItemClickListener { _, _, _, _ ->
+            val selectedLanguage = languageSelector.text.toString()
+            val languageCode = when (selectedLanguage.lowercase()) {
+                "español" -> "es"
+                "english" -> "en"
+                "français" -> "fr"
+                "русский" -> "ru"
+                "中文" -> "zh"
+                "العربية" -> "ar"
+                else -> "en"
+            }
 
-    }
+            saveLanguageToPreferences(languageCode)
+            setAppLocale(languageCode)
+
+            // Solo reiniciar WelcomeActivity (NO MainActivity)
+            val intent = Intent(this, WelcomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
+        }
 
 
-        // Botón de ayuda: muestra diálogo personalizado con fondo oscuro
-        val helpButton: FloatingActionButton = findViewById(R.id.helpButton)
-        helpButton.setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.custom_help_dialog, null)
-            val dialog = AlertDialog.Builder(this).setView(dialogView).create()
+        // ✅ Botón CONTINUAR con diálogo de confirmación
+        continueButton.setOnClickListener {
+            val selectedLanguage = languageSelector.text.toString()
+
+            if (selectedLanguage.isBlank()) {
+                Toast.makeText(this, getString(R.string.please_select_language), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val confirmView = layoutInflater.inflate(R.layout.custom_language_confirm_dialog, null)
+            val dialog = AlertDialog.Builder(this).setView(confirmView).create()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            val okButton = dialogView.findViewById<Button>(R.id.help_ok_button)
-            okButton.setOnClickListener { dialog.dismiss() }
+            val yesBtn = confirmView.findViewById<Button>(R.id.confirm_yes_button)
+            val noBtn = confirmView.findViewById<Button>(R.id.confirm_no_button)
 
-            dialog.show()
-        }
+            yesBtn.setOnClickListener {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
 
-        // Botón de tip del día: muestra consejo diario en diálogo estilizado
-        val tipButton: FloatingActionButton = findViewById(R.id.tipButton)
-        tipButton.setOnClickListener {
-            val tipText = getTipOfDay()
-            val dialogView = layoutInflater.inflate(R.layout.custom_tip_dialog, null)
-
-            val dialog = AlertDialog.Builder(this)
-                .setView(dialogView)
-                .create()
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-            dialogView.findViewById<TextView>(R.id.tip_message).text = tipText
-            dialogView.findViewById<Button>(R.id.tip_ok_button).setOnClickListener {
+            noBtn.setOnClickListener {
                 dialog.dismiss()
             }
 
             dialog.show()
+
         }
 
 
 
+        // ✅ Botón ayuda
+        helpButton.setOnClickListener {
+            val dialogView = layoutInflater.inflate(R.layout.custom_help_dialog, null)
+            val dialog = AlertDialog.Builder(this).setView(dialogView).create()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            dialogView.findViewById<Button>(R.id.help_ok_button).setOnClickListener { dialog.dismiss() }
+            dialog.show()
+        }
+
+        // ✅ Botón tip
+        tipButton.setOnClickListener {
+            val tipText = getTipOfDay()
+            val dialogView = layoutInflater.inflate(R.layout.custom_tip_dialog, null)
+            val dialog = AlertDialog.Builder(this).setView(dialogView).create()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            dialogView.findViewById<TextView>(R.id.tip_message).text = tipText
+            dialogView.findViewById<Button>(R.id.tip_ok_button).setOnClickListener { dialog.dismiss() }
+            dialog.show()
+        }
     }
+
 
     /** Obtiene la ubicación actual del usuario o usa Madrid por defecto si falla. */
     private fun getUserLocation() {

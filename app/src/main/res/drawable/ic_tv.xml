@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Pantalla con esquinas redondeadas -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5,6c-1.1,0 -2,0.9 -2,2v9c0,1.1 0.9,2 2,2h14c1.1,0 2,-0.9 2,-2V8c0,-1.1 -0.9,-2 -2,-2H5zM5,8h14v9H5V8z"/>
+
+    <!-- Piernas de la TV -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M8,21c0.55,0 1,-0.45 1,-1h-2c0,0.55 0.45,1 1,1zM16,21c0.55,0 1,-0.45 1,-1h-2c0,0.55 0.45,1 1,1z"/>
+
+    <!-- Antenas -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,2l-2.5,2.5 0.71,0.71L12,3.41l1.79,1.8 0.71,-0.71L12,2z"/>
+</vector>

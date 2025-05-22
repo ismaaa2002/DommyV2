@@ -1,48 +1,45 @@
-package Features
+package features
 
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.MotionEvent
 import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dommyv2.R
 
-class DoorsActivity : AppCompatActivity() {
+class LightsActivity : AppCompatActivity() {
 
     private lateinit var vibrator: Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_doors)
+        setContentView(R.layout.activity_light)
 
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        setupButton(R.id.btnBuildingDoor, "Building Door")
-        setupButton(R.id.btnApartmentDoor, "Apartment Door")
+        setupSwitch(R.id.switchEntrada, "Entrada")
+        setupSwitch(R.id.switchSalon, "Salón")
+        setupSwitch(R.id.switchCocina, "Cocina")
+        setupSwitch(R.id.switchBano, "Baño")
+        setupSwitch(R.id.switchDorm1, "Dormitorio 1")
+        setupSwitch(R.id.switchDorm2, "Dormitorio 2")
     }
 
-    private fun setupButton(id: Int, label: String) {
-        val button = findViewById<LinearLayout>(id)
+    private fun setupSwitch(id: Int, nombre: String) {
+        val sw = findViewById<Switch>(id)
         val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
         val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
 
-        button.setOnClickListener {
+        sw.setOnCheckedChangeListener { buttonView, isChecked ->
             vibrate()
-            Toast.makeText(this, "$label pulsado", Toast.LENGTH_SHORT).show()
-        }
+            buttonView.startAnimation(if (isChecked) scaleUp else scaleDown)
 
-        button.setOnTouchListener { view, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> view.startAnimation(scaleUp)
-                MotionEvent.ACTION_UP,
-                MotionEvent.ACTION_CANCEL -> view.startAnimation(scaleDown)
-            }
-            false
+            val estado = if (isChecked) "encendida" else "apagada"
+            Toast.makeText(this, "Luz de $nombre $estado", Toast.LENGTH_SHORT).show()
         }
     }
 

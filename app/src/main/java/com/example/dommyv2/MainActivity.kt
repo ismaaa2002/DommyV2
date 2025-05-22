@@ -1,5 +1,6 @@
 package com.tuapp.dommy
 
+import android.app.NotificationChannel
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -11,9 +12,14 @@ import android.os.Vibrator
 import android.content.Context
 import android.os.Build
 import kotlin.jvm.java
+import android.app.NotificationManager
+import androidx.core.app.NotificationCompat
+
 
 
 class MainActivity : AppCompatActivity() {
+
+
 
     private fun setupButton(id: Int, label: String) {
         val button = findViewById<LinearLayout>(id)
@@ -31,14 +37,14 @@ class MainActivity : AppCompatActivity() {
 
             // NAVEGACIÓN A OTRAS ACTIVIDADES
             val intent = when (id) {
-                R.id.btnDoors -> android.content.Intent(this, Features.DoorsActivity::class.java)
-                R.id.btnLights -> android.content.Intent(this, Features.LightsActivity::class.java)
-                R.id.btnWifi -> android.content.Intent(this, Features.WifiActivity::class.java)
-                R.id.btnAC -> android.content.Intent(this, Features.ACActivity::class.java)
-                R.id.btnInfo -> android.content.Intent(this, Features.InfoActivity::class.java)
-                R.id.btnChat -> android.content.Intent(this, Features.ChatActivity::class.java)
-                R.id.btnMap -> android.content.Intent(this, Features.MapActivity::class.java)
-                R.id.btnTV -> android.content.Intent(this, Features.TvActivity::class.java)
+                R.id.btnDoors -> android.content.Intent(this, features.DoorsActivity::class.java)
+                R.id.btnLights -> android.content.Intent(this, features.LightsActivity::class.java)
+                R.id.btnWifi -> android.content.Intent(this, features.WifiActivity::class.java)
+                R.id.btnAC -> android.content.Intent(this, features.ACActivity::class.java)
+                R.id.btnInfo -> android.content.Intent(this, features.InfoActivity::class.java)
+                R.id.btnChat -> android.content.Intent(this, features.ChatActivity::class.java)
+                R.id.btnMap -> android.content.Intent(this, features.MapActivity::class.java)
+                R.id.btnTV -> android.content.Intent(this, features.TvActivity::class.java)
                 else -> null
             }
 
@@ -58,10 +64,6 @@ class MainActivity : AppCompatActivity() {
             false
         }
     }
-
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +87,56 @@ class MainActivity : AppCompatActivity() {
             // También aplica la lógica de pulsado
             setupButton(id, resources.getResourceEntryName(id).removePrefix("btn").uppercase())
         }
+
+
+
+        val prefs = getSharedPreferences("TimerPrefs", MODE_PRIVATE)
+        val endTime = prefs.getLong("end_time", 0)
+        val isRunning = prefs.getBoolean("running", false)
+
+        if (isRunning && endTime > 0) {
+            val timeLeft = endTime - System.currentTimeMillis()
+            if (timeLeft <= 0) {
+                // ya terminó
+                apagarAire() // tu función
+                mostrarNotificacion()
+                prefs.edit().putBoolean("running", false).apply()
+            } else {
+                // todavía le queda tiempo — podrías mostrarlo
+            }
+        }
+
+
     }
+
+    private fun apagarAire() {
+        Toast.makeText(this, "Aire apagado automáticamente", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun mostrarNotificacion() {
+        val channelId = "air_timer_channel"
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Temporizador Aire",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            manager.createNotificationChannel(channel)
+        }
+
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_power_off)
+            .setContentTitle("Aire acondicionado")
+            .setContentText("El temporizador ha finalizado. El aire se apagará.")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
+
+        manager.notify(1001, notification)
+    }
+
+
 
 
 }

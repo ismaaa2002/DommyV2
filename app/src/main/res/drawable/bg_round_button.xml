@@ -1,0 +1,13 @@
+<!-- res/drawable/bg_round_button.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <solid android:color="#AAAAAA"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#DDDDDD"/>
+        </shape>
+    </item>
+</selector>

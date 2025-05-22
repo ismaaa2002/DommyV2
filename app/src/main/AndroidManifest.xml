@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -18,28 +19,40 @@
         android:theme="@style/Theme.DommyV2"
         tools:targetApi="31">
         <activity
-            android:name="Features.TvActivity"
+            android:name="InfoFeatures.CategoriaDetailActivity"
             android:exported="false" />
         <activity
-            android:name="Features.MapActivity"
+            android:name="InfoFeatures.StayInfoActivity"
             android:exported="false" />
         <activity
-            android:name="Features.ChatActivity"
+            android:name="InfoFeatures.MadridActivity"
             android:exported="false" />
         <activity
-            android:name="Features.InfoActivity"
+            android:name="InfoFeatures.VideoActivity"
             android:exported="false" />
         <activity
-            android:name="Features.ACActivity"
+            android:name="features.TvActivity"
             android:exported="false" />
         <activity
-            android:name="Features.WifiActivity"
+            android:name="features.MapActivity"
             android:exported="false" />
         <activity
-            android:name="Features.LightsActivity"
+            android:name="features.ChatActivity"
             android:exported="false" />
         <activity
-            android:name="Features.DoorsActivity"
+            android:name="features.InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name="features.ACActivity"
+            android:exported="false" />
+        <activity
+            android:name="features.WifiActivity"
+            android:exported="false" />
+        <activity
+            android:name="features.LightsActivity"
+            android:exported="false" />
+        <activity
+            android:name="features.DoorsActivity"
             android:exported="false" />
         <activity
             android:name="WelcomeActivity.WelcomeActivity"

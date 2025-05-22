@@ -40,8 +40,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp">
 
             <!-- Título -->
             <TextView
@@ -56,41 +59,19 @@
                 android:layout_marginBottom="24dp" />
 
             <!-- Lista de pasos -->
+            <!-- Lista de pasos UNIFICADA -->
             <TextView
+                android:id="@+id/wifiSteps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📷  Escanea este código QR con tu cámara"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
-                android:layout_marginBottom="12dp" />
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"
+                android:text="📷  Escanea este código QR con tu cámara\n\n📝  Ingresa el Wifi y Contraseña\n\n✅  Wifi: MyCityHome.es\nContraseña: welcome1\n\n📶  ¡Listo! Ya estás conectado a nuestro Wi-Fi" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📝  Ingresa tu nombre de usuario y contraseña"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✅  Usuario: MyCityHome.es   Contraseña: welcome1"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📶  ¡Listo! Ya estás conectado a nuestro Wi-Fi"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginBottom="24dp" />
 
             <!-- Código QR -->
             <ImageView
@@ -102,7 +83,7 @@
                 android:layout_marginBottom="24dp" />
 
             <!-- Botón copiar contraseña -->
-            <Button
+            <TextView
                 android:id="@+id/btnCopyPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,10 +97,30 @@
                 android:paddingRight="32dp"
                 android:paddingTop="14dp"
                 android:paddingBottom="14dp"
-                android:layout_marginTop="8dp" />
-
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true" />
 
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/btnHelp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_help"
+        android:contentDescription="Ayuda"
+        android:background="@drawable/rounded_dark_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

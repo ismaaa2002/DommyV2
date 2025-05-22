@@ -1,45 +1,48 @@
-package Features
+package features
 
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.view.MotionEvent
 import android.view.animation.AnimationUtils
-import android.widget.Switch
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dommyv2.R
 
-class LightsActivity : AppCompatActivity() {
+class DoorsActivity : AppCompatActivity() {
 
     private lateinit var vibrator: Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_light)
+        setContentView(R.layout.activity_doors)
 
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        setupSwitch(R.id.switchEntrada, "Entrada")
-        setupSwitch(R.id.switchSalon, "Salón")
-        setupSwitch(R.id.switchCocina, "Cocina")
-        setupSwitch(R.id.switchBano, "Baño")
-        setupSwitch(R.id.switchDorm1, "Dormitorio 1")
-        setupSwitch(R.id.switchDorm2, "Dormitorio 2")
+        setupButton(R.id.btnBuildingDoor, "Building Door")
+        setupButton(R.id.btnApartmentDoor, "Apartment Door")
     }
 
-    private fun setupSwitch(id: Int, nombre: String) {
-        val sw = findViewById<Switch>(id)
+    private fun setupButton(id: Int, label: String) {
+        val button = findViewById<LinearLayout>(id)
         val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
         val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
 
-        sw.setOnCheckedChangeListener { buttonView, isChecked ->
+        button.setOnClickListener {
             vibrate()
-            buttonView.startAnimation(if (isChecked) scaleUp else scaleDown)
+            Toast.makeText(this, "$label pulsado", Toast.LENGTH_SHORT).show()
+        }
 
-            val estado = if (isChecked) "encendida" else "apagada"
-            Toast.makeText(this, "Luz de $nombre $estado", Toast.LENGTH_SHORT).show()
+        button.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> view.startAnimation(scaleUp)
+                MotionEvent.ACTION_UP,
+                MotionEvent.ACTION_CANCEL -> view.startAnimation(scaleDown)
+            }
+            false
         }
     }
 

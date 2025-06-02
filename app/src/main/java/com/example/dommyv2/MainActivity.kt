@@ -1,5 +1,6 @@
 package com.tuapp.dommy
 
+import android.app.Dialog
 import android.app.NotificationChannel
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -13,6 +14,10 @@ import android.content.Context
 import android.os.Build
 import kotlin.jvm.java
 import android.app.NotificationManager
+import android.content.Intent
+import android.net.Uri
+import android.view.Window
+import android.widget.Button
 import androidx.core.app.NotificationCompat
 
 
@@ -42,17 +47,25 @@ class MainActivity : AppCompatActivity() {
                 R.id.btnWifi -> android.content.Intent(this, features.WifiActivity::class.java)
                 R.id.btnAC -> android.content.Intent(this, features.ACActivity::class.java)
                 R.id.btnInfo -> android.content.Intent(this, features.InfoActivity::class.java)
-                R.id.btnChat -> android.content.Intent(this, features.ChatActivity::class.java)
                 R.id.btnMap -> android.content.Intent(this, features.MapActivity::class.java)
                 R.id.btnTV -> android.content.Intent(this, features.TvActivity::class.java)
+
+                // 🚨 Aquí es donde cambiamos el comportamiento
+                R.id.btnChat -> {
+                    showChatConfirmationDialog()
+                    null
+                }
+
                 else -> null
             }
 
-            intent?.let {
-                startActivity(it)
-            }
 
-            Toast.makeText(this, "$label pulsado", Toast.LENGTH_SHORT).show()
+            if (id != R.id.btnChat) {
+                intent?.let {
+                    startActivity(it)
+                }
+                Toast.makeText(this, "$label pulsado", Toast.LENGTH_SHORT).show()
+            }
         }
 
         button.setOnTouchListener { view, event ->
@@ -135,6 +148,47 @@ class MainActivity : AppCompatActivity() {
 
         manager.notify(1001, notification)
     }
+
+    private fun showChatConfirmationDialog() {
+        val dialog = Dialog(this, R.style.CustomDialogTheme)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_confirm_chat)
+        dialog.setCancelable(false)
+
+        val btnYes = dialog.findViewById<Button>(R.id.confirm_yes_button)
+        val btnNo = dialog.findViewById<Button>(R.id.confirm_no_button)
+
+        btnYes.setOnClickListener {
+            val phone = "+34123456789" // Sustituye por el número real
+            val uri = Uri.parse("https://wa.me/${phone.replace("+", "")}")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "WhatsApp no está instalado", Toast.LENGTH_SHORT).show()
+            }
+
+            dialog.dismiss()
+        }
+
+        btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.9).toInt(),
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
+
+    }
+
+
+
+
 
 
 

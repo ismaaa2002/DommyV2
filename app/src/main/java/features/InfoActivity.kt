@@ -9,54 +9,49 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.dommyv2.R
+import InfoFeatures.VideoActivity
+import InfoFeatures.MadridActivity
+import InfoFeatures.StayInfoActivity
+import kotlin.jvm.java
 
 class InfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
 
+        // Animación de logo
         val logo = findViewById<ImageView>(R.id.logoMinimal)
         val logoAnim = AnimationUtils.loadAnimation(this, R.anim.scale_fade_in)
         logo.startAnimation(logoAnim)
 
-
-
-
-        // Ajuste de insets
+        // Ajuste de insets (estética)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Referencias a los botones (LinearLayout)
+        // Botones
         val btnVideo = findViewById<LinearLayout>(R.id.btnVideo)
         val btnSeeMadrid = findViewById<LinearLayout>(R.id.btnSeeMadrid)
         val btnStayInfo = findViewById<LinearLayout>(R.id.btnStayInfo)
 
-        // Animación fade-in
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         btnVideo.startAnimation(fadeIn)
         btnSeeMadrid.startAnimation(fadeIn)
         btnStayInfo.startAnimation(fadeIn)
 
-        // Lógica de botones (a completar más adelante)
+        // Lógica de navegación
         btnVideo.setOnClickListener {
-            startActivity(Intent(this, InfoFeatures.VideoActivity::class.java))
+            startActivity(Intent(this, VideoActivity::class.java))
         }
 
         btnSeeMadrid.setOnClickListener {
-            startActivity(Intent(this, InfoFeatures.MadridActivity::class.java))
+            startActivity(Intent(this, MadridActivity::class.java))
         }
 
         btnStayInfo.setOnClickListener {
-            startActivity(Intent(this, InfoFeatures.StayInfoActivity::class.java))
+            startActivity(Intent(this, StayInfoActivity::class.java))
         }
-
-
-
-
-
-
     }
 }

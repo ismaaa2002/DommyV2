@@ -16,18 +16,20 @@
         android:contentDescription="@string/app_name" />
 
     <!-- Logo -->
+
+    <!-- Grid de botones turísticos -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="134dp"
         android:layout_height="116dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="16dp"
         android:alpha="0.7"
         android:src="@drawable/logo_minimalista"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Grid de botones turísticos -->
     <GridLayout
         android:id="@+id/gridMadrid"
         android:layout_width="match_parent"

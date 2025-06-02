@@ -1,0 +1,10 @@
+<!--  Adaptado desde activity_culture.xml para CategoryDetailActivity  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+    <!--  Cultura 1  -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded" android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp" android:scaleType="centerCrop" android:src="@drawable/culture1" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Museo del Prado" android:textSize="18sp" android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Uno de los museos más importantes del mundo con obras de Velázquez y Goya." android:textSize="14sp" android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Más información" android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+</LinearLayout>

@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/confirm_title"
-        android:text="@string/confirm_language_title"
+        android:text="¿Iniciar chat?"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/confirm_message"
-        android:text="@string/confirm_language_message"
+        android:text="¿Quieres contactar con el CRM por WhatsApp?"
         android:textColor="#DDDDDD"
         android:textSize="14sp"
         android:layout_marginBottom="16dp"
@@ -39,7 +39,7 @@
 
         <Button
             android:id="@+id/confirm_no_button"
-            android:text="@string/confirm_no"
+            android:text="No"
             android:textColor="@color/white"
             android:backgroundTint="@android:color/holo_red_dark"
             android:layout_marginEnd="8dp"
@@ -48,7 +48,7 @@
 
         <Button
             android:id="@+id/confirm_yes_button"
-            android:text="@string/confirm_yes"
+            android:text="Sí"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/cyan"
             android:layout_width="wrap_content"

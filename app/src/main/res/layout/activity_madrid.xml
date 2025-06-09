@@ -17,7 +17,6 @@
 
     <!-- Logo -->
 
-    <!-- Grid de botones turísticos -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="134dp"
@@ -42,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Repite este bloque cambiando ID, icono y texto -->
+        <!-- Bloque de botones -->
 
         <LinearLayout
             android:id="@+id/btnFood"

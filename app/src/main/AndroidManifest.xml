@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -38,9 +41,6 @@
             android:name="features.MapActivity"
             android:exported="false" />
         <activity
-            android:name="features.ChatActivity"
-            android:exported="false" />
-        <activity
             android:name="features.InfoActivity"
             android:exported="false" />
         <activity
@@ -53,7 +53,7 @@
             android:name="features.LightsActivity"
             android:exported="false" />
         <activity
-            android:name="features.DoorsActivity"
+            android:name="features.ServicesActivity"
             android:exported="false" />
         <activity
             android:name="WelcomeActivity.WelcomeActivity"
@@ -74,6 +74,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Clave de API de Google Maps -->
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCjb7KJpdmWnkZgFsjPGPQogVs4ysIXBzs"/>
+
+
     </application>
 
 </manifest>

@@ -235,7 +235,7 @@
                 android:id="@+id/buttonStopTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detener"
+                android:text="Stop"
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/poppins_regular"
                 app:cornerRadius="16dp"

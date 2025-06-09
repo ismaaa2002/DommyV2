@@ -12,18 +12,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dommyv2.R
 
-class DoorsActivity : AppCompatActivity() {
+class ServicesActivity : AppCompatActivity() {
 
     private lateinit var vibrator: Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_doors)
+        setContentView(R.layout.activity_services)
 
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        setupButton(R.id.btnBuildingDoor, "Building Door")
-        setupButton(R.id.btnApartmentDoor, "Apartment Door")
     }
 
     private fun setupButton(id: Int, label: String) {
@@ -54,4 +52,10 @@ class DoorsActivity : AppCompatActivity() {
             vibrator.vibrate(30)
         }
     }
+
+
+
+
+
+
 }

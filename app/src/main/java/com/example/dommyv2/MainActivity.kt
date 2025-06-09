@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             // NAVEGACIÓN A OTRAS ACTIVIDADES
             val intent = when (id) {
-                R.id.btnDoors -> android.content.Intent(this, features.DoorsActivity::class.java)
+                R.id.btnServices-> android.content.Intent(this, features.ServicesActivity::class.java)
                 R.id.btnLights -> android.content.Intent(this, features.LightsActivity::class.java)
                 R.id.btnWifi -> android.content.Intent(this, features.WifiActivity::class.java)
                 R.id.btnAC -> android.content.Intent(this, features.ACActivity::class.java)
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         val anim = AnimationUtils.loadAnimation(this, R.anim.button_fade_in)
 
         val buttons = listOf(
-            R.id.btnDoors, R.id.btnLights, R.id.btnWifi, R.id.btnAC,
+            R.id.btnServices, R.id.btnLights, R.id.btnWifi, R.id.btnAC,
             R.id.btnInfo, R.id.btnChat, R.id.btnMap, R.id.btnTV
         )
 

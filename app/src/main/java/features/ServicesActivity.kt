@@ -1,6 +1,8 @@
 package features
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -22,25 +24,38 @@ class ServicesActivity : AppCompatActivity() {
 
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
+        setupServiceButton(R.id.btnUberEats, "Uber Eats", "com.ubercab.eats", "https://www.ubereats.com")
+        setupServiceButton(R.id.btnUberRide, "Uber Transporte", "com.ubercab", "https://m.uber.com")
+        setupServiceButton(R.id.btnGlovo, "Glovo", "com.glovo", "https://glovoapp.com")
     }
 
-    private fun setupButton(id: Int, label: String) {
+    private fun setupServiceButton(id: Int, label: String, packageName: String, webUrl: String) {
         val button = findViewById<LinearLayout>(id)
         val scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up)
         val scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down)
 
         button.setOnClickListener {
             vibrate()
-            Toast.makeText(this, "$label pulsado", Toast.LENGTH_SHORT).show()
+            openAppOrWeb(packageName, webUrl)
         }
 
         button.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> view.startAnimation(scaleUp)
-                MotionEvent.ACTION_UP,
-                MotionEvent.ACTION_CANCEL -> view.startAnimation(scaleDown)
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> view.startAnimation(scaleDown)
             }
             false
+        }
+    }
+
+    private fun openAppOrWeb(packageName: String, webUrl: String) {
+        val pm = packageManager
+        val launchIntent = pm.getLaunchIntentForPackage(packageName)
+        if (launchIntent != null) {
+            startActivity(launchIntent)
+        } else {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(webUrl))
+            startActivity(browserIntent)
         }
     }
 
@@ -52,10 +67,4 @@ class ServicesActivity : AppCompatActivity() {
             vibrator.vibrate(30)
         }
     }
-
-
-
-
-
-
 }

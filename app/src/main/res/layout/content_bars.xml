@@ -1,11 +1,235 @@
-<!--  Adaptado desde activity_drinks.xml para CategoryDetailActivity  -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
-    <!--  Bar 1  -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded" android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
-        <ImageView android:layout_width="match_parent" android:layout_height="200dp" android:scaleType="centerCrop" android:src="@drawable/drink1" android:layout_marginBottom="8dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Azotea del Círculo" android:textSize="18sp" android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Calle de Alcalá, 42" android:textSize="14sp" android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Una terraza con vistas impresionantes ideal para cócteles al atardecer." android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
-        <Button android:id="@+id/visitWebsiteButton1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Más información" android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+<!-- Adaptado desde activity_drinks.xml para CategoryDetailActivity -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="16dp">
+
+    <!-- Bar 1 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink1"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Azotea del Círculo" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de Alcalá, 42" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Una terraza con vistas impresionantes ideal para cócteles al atardecer."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton1" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
     </LinearLayout>
+
+    <!-- Bar 2 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink2"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Salmon Guru" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de Echegaray, 21" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Uno de los mejores bares de cócteles del mundo, con una decoración muy creativa."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton2" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Bar 3 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink3"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Macera Taller Bar" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de San Mateo, 21" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Bar original donde maceran sus propios licores. Ambiente moderno."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton3" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Bar 4 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink4"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="1862 Dry Bar" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle del Pez, 27" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Coctelería clásica con ambiente íntimo. Ideal para una noche elegante."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton4" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Bar 5 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink5"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="The Roof" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Plaza de Santa Ana, 14" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Una terraza exclusiva en el hotel ME Madrid con vistas panorámicas."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton5" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+    <!-- Bar 6 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink6"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Del Diego Cocktail Bar" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de la Reina, 12" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Coctelería tradicional con más de 20 años de historia en Madrid."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton6" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Bar 7 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink7"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Bar Cock" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle Reina, 16" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Elegante bar con historia, frecuentado por famosos."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton7" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Bar 8 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink8"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Savas" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de San Vicente Ferrer, 33" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Bar pequeño y moderno con cócteles creativos y buen ambiente."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton8" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Bar 9 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink9"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Harvey's Cocktail Bar" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle Fuencarral, 70" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Ambiente vintage estilo años 60 con excelente carta de cócteles."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton9" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Bar 10 -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/drink10"
+            android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Marabú Madrid" android:textSize="18sp"
+            android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de Ponzano, 37" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Bar musical moderno con ambiente animado y música en vivo."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton10" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
 </LinearLayout>

@@ -1,11 +1,308 @@
-<!--  Adaptado desde activity_food.xml para CategoryDetailActivity  -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
-    <!--  Restaurant 1  -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded" android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
-        <ImageView android:layout_width="match_parent" android:layout_height="200dp" android:scaleType="centerCrop" android:src="@drawable/food1" android:layout_marginBottom="8dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sobrino de Botín" android:textSize="18sp" android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Calle de Cuchilleros, 17, Madrid" android:textSize="14sp" android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Uno de los restaurantes más antiguos del mundo, famoso por su carne de cerdo al horno de leña." android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
-        <Button android:id="@+id/visitWebsiteButton1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Más información" android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Restaurante 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food1"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sobrino de Botín"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calle de Cuchilleros, 17, Madrid"
+            android:textSize="14sp"
+            android:textColor="#CCCCCC"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uno de los restaurantes más antiguos del mundo, famoso por su carne de cerdo al horno de leña."
+            android:textSize="14sp"
+            android:textColor="#AAAAAA"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/visitWebsiteButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Más información"
+            android:backgroundTint="#007BFF"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
+
+    <!-- Restaurante 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food2"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="StreetXO"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calle de Serrano, 52, Madrid"
+            android:textSize="14sp"
+            android:textColor="#CCCCCC"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alta cocina asiática callejera con un estilo innovador por el chef Dabiz Muñoz."
+            android:textSize="14sp"
+            android:textColor="#AAAAAA"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/visitWebsiteButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Más información"
+            android:backgroundTint="#007BFF"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- Restaurante 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food3"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mercado de San Miguel"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plaza de San Miguel, Madrid"
+            android:textSize="14sp"
+            android:textColor="#CCCCCC"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Un mercado gastronómico histórico con una gran variedad de tapas, vinos y postres gourmet."
+            android:textSize="14sp"
+            android:textColor="#AAAAAA"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/visitWebsiteButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Más información"
+            android:backgroundTint="#007BFF"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- Restaurante 4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/food4" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Casa Lucio" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle Cava Baja, 35, Madrid" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Famoso por sus huevos rotos, es un clásico de la cocina tradicional madrileña."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton4" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Restaurante 5 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/food5" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Bibo Madrid" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Paseo de la Castellana, 52" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Restaurante del chef Dani García, con propuestas andaluzas y toque internacional."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton5" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Restaurante 6 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/food6" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Sala de Despiece" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de Ponzano, 11, Madrid" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Diseño moderno con cocina de producto, ideal para los amantes de la carne y el pescado fresco."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton6" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+
+    <!-- Restaurante 7 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/food7" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="El Club Allard" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de Ferraz, 2, Madrid" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Restaurante con estrella Michelin que ofrece menús degustación creativos en un entorno elegante."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton7" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Restaurante 8 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/food8" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Ramen Kagura" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Calle de las Fuentes, 1, Madrid" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Auténtico ramen japonés con opciones tradicionales y veganas en el centro de Madrid."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton8" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Restaurante 9 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/food9" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Lhardy" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Carrera de San Jerónimo, 8, Madrid" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Fundado en 1839, es uno de los referentes históricos del cocido madrileño."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton9" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Restaurante 10 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_button_black_rounded"
+        android:orientation="vertical" android:padding="16dp" android:elevation="4dp">
+        <ImageView android:layout_width="match_parent" android:layout_height="200dp"
+            android:scaleType="centerCrop" android:src="@drawable/food10" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="DiverXO" android:textSize="18sp" android:textStyle="bold"
+            android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="NH Eurobuilding, C/ Padre Damián, 23" android:textSize="14sp"
+            android:textColor="#CCCCCC" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Único restaurante con tres estrellas Michelin en Madrid, por Dabiz Muñoz."
+            android:textSize="14sp" android:textColor="#AAAAAA" android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/visitWebsiteButton10" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Más información"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+
 </LinearLayout>

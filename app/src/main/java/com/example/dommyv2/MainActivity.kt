@@ -68,6 +68,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
         button.setOnTouchListener { view, event ->
             when (event.action) {
                 android.view.MotionEvent.ACTION_DOWN -> view.startAnimation(scaleUp)

@@ -22,6 +22,11 @@ class MadridActivity : AppCompatActivity() {
         setButtonAction(R.id.btnHealth, "health")
     }
 
+
+
+
+
+
     private fun setButtonAction(buttonId: Int, category: String) {
         findViewById<LinearLayout>(buttonId).setOnClickListener {
             val intent = Intent(this, CategoryDetailActivity::class.java)
@@ -29,4 +34,9 @@ class MadridActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
+
+
+
 }
